@@ -2,23 +2,23 @@ import pandas as pd
 from django.db import models
 
 STRATEGY_OPTIONS = (
-    ('multi', 'Multi Arbitrage'),
-    ('fixed', 'Fixed Income'),
-    ('long_short', 'Long Short Equity'),
-    ('event', 'Event Driven'),
+    ('Multi Arbitrage', 'Multi Arbitrage'),
+    ('Fixed Income', 'Fixed Income'),
+    ('Long Short Equity', 'Long Short Equity'),
+    ('Event Driven', 'Event Driven'),
 )
 
 REGION_OPTIONS = (
-    ('global', 'Global'),
-    ('us', 'US'),
-    ('asia', 'Asia'),
+    ('Global', 'Global'),
+    ('US', 'US'),
+    ('Asia', 'Asia'),
 )
 
 
 class Fund(models.Model):
     #fund_id = models.CharField(max_length=20, unique=True, blank=False)
     name = models.CharField(max_length=255, blank=False, unique=True)
-    strategy = models.CharField(choices=STRATEGY_OPTIONS, max_length=10, blank=False)
+    strategy = models.CharField(choices=STRATEGY_OPTIONS, max_length=15, blank=False)
     region_exposure = models.CharField(choices=REGION_OPTIONS, max_length=6)
     #returns_series = models.ManyToManyField(ReturnItem, blank=True)
 
