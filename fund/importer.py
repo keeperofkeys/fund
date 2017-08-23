@@ -30,7 +30,7 @@ def import_time_series(file_path):
             for item in fund_data.iteritems():
                 date, percentage = item
                 if not math.isnan(percentage):
-                    f.add_return_item(date, percentage)  # automatically saves
+                    f.add_return_item(date, percentage * 100)  # automatically saves
                     count += 1
 
             print('added %s items to %s' % (count, fund_name))
