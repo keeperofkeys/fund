@@ -16,11 +16,9 @@ REGION_OPTIONS = (
 
 
 class Fund(models.Model):
-    #fund_id = models.CharField(max_length=20, unique=True, blank=False)
     name = models.CharField(max_length=255, blank=False, unique=True)
     strategy = models.CharField(choices=STRATEGY_OPTIONS, max_length=15, blank=False)
     region_exposure = models.CharField(choices=REGION_OPTIONS, max_length=6)
-    #returns_series = models.ManyToManyField(ReturnItem, blank=True)
 
     def __str__(self):
         return self.name

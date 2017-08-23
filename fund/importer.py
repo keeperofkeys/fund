@@ -15,10 +15,10 @@ def import_time_series(file_path):
             name = fi['Fund Name']
             style = fi['Strategy Style']
             region = fi['Region Exposure']
-            print('creating %s' % name)
             f, flag = Fund.objects.get_or_create(name=name, strategy=style, region_exposure=region)
             f.save()
-            print('new' if flag else 'old')
+            if flag:
+                print('created fund %s' % name)
 
     # populate
     if 'Time Series' in sheets:
