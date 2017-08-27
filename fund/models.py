@@ -1,3 +1,4 @@
+from decimal import *
 import pandas as pd
 from django.db import models
 
@@ -36,7 +37,7 @@ class Fund(models.Model):
         prev_value = 1
         cumulative_data = []
         for td in time_data:
-            next_value = prev_value * (1 + (td.percentage/100))
+            next_value = Decimal(prev_value * (1 + (td.percentage/100))).quantize(Decimal('0.00001'))  # 5DP
             cumulative_data.append(next_value)
             prev_value = next_value
 
