@@ -6,7 +6,7 @@
 </head>
 <body>
 <table>
-    <tr>
+    <tr class="head">
         <th>name</th>
         <th>strategy</th>
         <th>region exposure</th>
@@ -15,12 +15,36 @@
     {% for fund in funds %}
     <tr>
         <td>{{ fund.name }}</td>
-        <td>{{ fund.strategy }}</td>
-        <td>{{ fund.region_exposure }}</td>
+        <td class="strategy">{{ fund.strategy }}</td>
+        <td class="region">{{ fund.region_exposure }}</td>
         <td>{{ fund.return2017 }}</td>
     </tr>
     {% endfor %}
 </table>
 
+<select id="strategySelector">
+    <option value="">FILTER BY STRATEGY</option>
+    <option value="Multi Arbitrage">Multi Arbitrage</option>
+    <option value="Fixed Income">Fixed Income</option>
+    <option value="Long Short Equity">Long Short Equity</option>
+    <option value="Event Driven">Event Driven</option>
+</select>
+
+<script type="application/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script type="application/javascript">
+    $('#strategySelector').on('change', function() {
+        var filter = $('#strategySelector').val();
+        $('tr:not(.head)').each(function() {
+            var $row = $(this),
+                region = $row.find('td.strategy').text();
+
+            if (filter && region != filter) {
+                $row.hide();
+            } else {
+                $row.show();
+            }
+        });
+    });
+</script>
 </body>
 </html>
