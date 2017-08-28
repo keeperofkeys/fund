@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>name</th>
+        <th>strategy</th>
+        <th>region exposure</th>
+        <th>return series,<br>June 2017</th>
+    </tr>
+    {% for fund in funds %}
+    <tr>
+        <td>{{ fund.name }}</td>
+        <td>{{ fund.strategy }}</td>
+        <td>{{ fund.region_exposure }}</td>
+        <td>{{ fund.return2017 }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
