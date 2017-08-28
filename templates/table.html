@@ -30,15 +30,27 @@
     <option value="Event Driven">Event Driven</option>
 </select>
 
+<select id="regionSelector">
+    <option value="">FILTER BY REGION EXPOSURE</option>
+    <option value="Global">Global</option>
+    <option value="US">US</option>
+    <option value="Asia">Asia</option>
+</select>
+
 <script type="application/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="application/javascript">
-    $('#strategySelector').on('change', function() {
-        var filter = $('#strategySelector').val();
+    // respond to either selector changing
+    $('#strategySelector, #regionSelector').on('change', function() {
+        var strategyFilter = $('#strategySelector').val(),
+            regionFilter = $('#regionSelector').val();
+
+        // hide or show rows based on filter values
         $('tr:not(.head)').each(function() {
             var $row = $(this),
-                region = $row.find('td.strategy').text();
+                strategy = $row.find('td.strategy').text(),
+                region = $row.find('td.region').text();
 
-            if (filter && region != filter) {
+            if (strategyFilter && strategy != strategyFilter || regionFilter && region != regionFilter) {
                 $row.hide();
             } else {
                 $row.show();
